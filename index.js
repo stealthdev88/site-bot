@@ -202,7 +202,7 @@ const startScript = async () => {
     let proxy = `--proxy-server=${PROXY_SERVER[i]}`;
   
     browser = await pt.launch({
-      headless: false,
+      headless: true,
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
