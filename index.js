@@ -23,10 +23,10 @@ const PASSWORD = "kimju1992103";
 const FILENAME = "trueAccounts.txt";
 
 // Proxy server details
-//  const PROXY_SERVER = [
-// 	'84.33.200.197:6774', '45.146.30.227:6731', '209.99.135.47:6678', '104.222.167.216:6618', '184.174.24.173:6749', '103.114.59.72:6849', 
-// 	'209.127.143.218:8317', '198.105.111.59:6737', '45.138.117.200:6972', '204.217.245.71:6662'
-//  ];
+ const PROXY_SERVER = [
+	'84.33.200.197:6774', '45.146.30.227:6731', '209.99.135.47:6678', '104.222.167.216:6618', '184.174.24.173:6749', '103.114.59.72:6849', 
+	'209.127.143.218:8317', '198.105.111.59:6737', '45.138.117.200:6972', '204.217.245.71:6662'
+ ];
  const PROXY_USERNAME = 'upwork123456';
  const PROXY_PASSWORD = 'upwork1234567890';
 
@@ -195,13 +195,12 @@ let browser;
 let ni = 0;
 let i = 0;
 const startScript = async () => {
-  ni = ni + 1;
-  i = ni % 10;
-  console.log("nininininini", ni);
-  console.log("iiiiii", i);
-  // console.log(`--proxy-server=${PROXY_SERVER[i]}`);
-  // let proxy = `--proxy-server=${PROXY_SERVER[i]}`;
   while (true) {
+    ni = ni + 1;
+    i = ni % 10;
+    console.log(`--proxy-server=${PROXY_SERVER[i]}`);
+    let proxy = `--proxy-server=${PROXY_SERVER[i]}`;
+  
     browser = await pt.launch({
       headless: true,
       args: [
@@ -216,7 +215,7 @@ const startScript = async () => {
         "--disable-features=site-per-process",
         "--disable-web-security",
         "--disable-blink-features=AutomationControlled",
-        // proxy
+        proxy
       ],
     });
 
@@ -224,10 +223,10 @@ const startScript = async () => {
       const start = performance.now();
       const [page] = await browser.pages();
 
-      // await page.authenticate({
-      //  username: PROXY_USERNAME,
-      //  password: PROXY_PASSWORD,
-      // });
+      await page.authenticate({
+       username: PROXY_USERNAME,
+       password: PROXY_PASSWORD,
+      });
 
       const userAgent = new UserAgent();
       await page.setUserAgent(userAgent.toString());
