@@ -215,7 +215,7 @@ const startScript = async () => {
         "--disable-features=site-per-process",
         "--disable-web-security",
         "--disable-blink-features=AutomationControlled",
-        proxy
+        // proxy
       ],
     });
 
@@ -223,10 +223,10 @@ const startScript = async () => {
       const start = performance.now();
       const [page] = await browser.pages();
 
-      await page.authenticate({
-       username: PROXY_USERNAME,
-       password: PROXY_PASSWORD,
-      });
+      // await page.authenticate({
+      //  username: PROXY_USERNAME,
+      //  password: PROXY_PASSWORD,
+      // });
 
       const userAgent = new UserAgent();
       await page.setUserAgent(userAgent.toString());
