@@ -202,7 +202,7 @@ const startScript = async () => {
     let proxy = `--proxy-server=${PROXY_SERVER[i]}`;
   
     browser = await pt.launch({
-      headless: true,
+      headless: false,
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
@@ -251,7 +251,7 @@ const startScript = async () => {
         })
       );
       await signup(page, emailAddress);
-      await delay(2000);
+      await delay(20000);
 //      const verify_link = await readMail(page, emailAddress);
 //      await retry(() =>
 //        page.goto(verify_link, { waitUntil: "domcontentloaded" })
